@@ -12,6 +12,11 @@ function tts(text, opts) {
         e.code = 400;
         e.message = 'The language \'' + lang + '\' is not supported';
     }
+    if (text.length > 200) {
+      e = new Error();
+      e.code = 400;
+      e.message = 'text length (' + text.length + ') should be less than 200 characters';
+    }
     if (e) {
         return new Promise(function (resolve, reject) {
             reject(e);
